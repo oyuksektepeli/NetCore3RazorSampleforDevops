@@ -1,0 +1,26 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- script: echo Hello, world!
+  displayName: 'Run a one-line script'
+
+- script: |
+    echo Add other tasks to build, test, and deploy your project.
+    echo See https://aka.ms/yaml
+  displayName: 'Run a multi-line script'
+
+- task: AzureCLI@2
+  inputs:
+     azureSubscription: 'Microsoft Azure Sponsorship - MVP (7fd89b16-0998-418f-ac17-236f38d101bc)'
+     scriptType: 'bash'
+     scriptLocation: 'inlineScript'
+     inlineScript: 'az acr repository delete --name yuksektek --image netcore3webapprazor:9be6e5d66bcc6bc3f22abc042a7160ed046efb12 --yes'
